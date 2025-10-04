@@ -1179,5 +1179,105 @@ class TaskManager
 - Task ordering with `LinkedList`
 
 ---
+Perfect 👍 Let’s dive into **Module 8: Exception Handling**.
+
+---
+
+# 📘 Module 8: Exception Handling in C#
+
+### 🔹 1. What are Exceptions?
+
+* Exceptions represent **runtime errors** (like dividing by zero, invalid file path, accessing a null object).
+* In C#, exceptions are **objects derived from `System.Exception`**.
+
+Example of a crash without handling:
+
+```csharp
+int x = 10, y = 0;
+int result = x / y; // ❌ This will throw DivideByZeroException
+```
+
+---
+
+### 🔹 2. Try–Catch–Finally
+
+You can handle exceptions using `try`, `catch`, and `finally`.
+
+```csharp
+try
+{
+    int x = 10, y = 0;
+    int result = x / y;
+    Console.WriteLine(result);
+}
+catch (DivideByZeroException ex)
+{
+    Console.WriteLine("You can't divide by zero!");
+}
+catch (Exception ex) // generic catch for other errors
+{
+    Console.WriteLine("Something went wrong: " + ex.Message);
+}
+finally
+{
+    Console.WriteLine("This block always runs (cleanup code).");
+}
+```
+
+---
+
+### 🔹 3. Throwing Exceptions
+
+You can raise your own exception when something goes wrong.
+
+```csharp
+static void Withdraw(int amount)
+{
+    if (amount > 1000)
+        throw new InvalidOperationException("Withdrawal limit exceeded!");
+    Console.WriteLine("Withdrawal successful: " + amount);
+}
+```
+
+---
+
+### 🔹 4. Custom Exceptions
+
+You can define your own exception classes (useful for big projects).
+
+```csharp
+class TaskNotFoundException : Exception
+{
+    public TaskNotFoundException(string message) : base(message) { }
+}
+```
+
+Usage:
+
+```csharp
+throw new TaskNotFoundException("The task you are looking for does not exist!");
+```
+
+---
+
+### 🔹 5. Best Practices
+
+* ✅ Catch **specific exceptions** first (`FileNotFoundException`, `DivideByZeroException`, etc.).
+* ✅ Use `finally` for cleanup (closing files, releasing resources).
+* ✅ Avoid catching `Exception` unless you re-throw or log it.
+* ✅ Use custom exceptions for **domain-specific errors** (like `TaskNotFoundException`).
+
+---
+
+### 🔹 Mini Practice (Try Now)
+
+Write a console app that:
+
+1. Asks the user to enter two numbers.
+2. Divides them and prints the result.
+3. If the user enters `0` as the second number, handle it gracefully with `DivideByZeroException`.
+4. If the user enters something that’s not a number, handle it with `FormatException`.
+
+---
 
 
