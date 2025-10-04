@@ -1332,18 +1332,110 @@ Hello amar
 
 ### 🔹 2. Events
 
-* **Events** are built on top of delegates.
-* They let one part of a program **notify** another when something happens.
-* Example: Button click in GUI.
+Got it 👍 Let’s go step by step and revisit **Events in C#**.
+
+---
+
+### 1. **What is an Event?**
+
+An **event** in C# is a way for one object to **notify** other objects when something happens.
+Think of it like a "signal" or "announcement" system.
+
+👉 Example in real life:
+
+* A **Button** on a form raises a **Click** event when you click it.
+* Your code can "subscribe" to that event so it executes when the event is raised.
+
+---
+
+### 2. **Event Declaration**
+
+In C#, events are built on top of **delegates**.
+
+* **Delegate** → Defines the type of method that can be called.
+* **Event** → Uses that delegate to notify subscribers.
 
 ```csharp
-public class Publisher
-{
-    public event Action<string> OnMessage; // event using built-in delegate
+// Step 1: Define a delegate
+public delegate void Notify(string message);
 
-    public void SendMessage(string msg)
+// Step 2: Define a class with an event
+public class Process
+{
+    public event Notify ProcessCompleted; // Event based on delegate
+
+    public void StartProcess()
     {
-        OnMessage?.Invoke(msg); // fire event if someone subscribed
+        Console.WriteLine("Process started...");
+        // Some work...
+        Console.WriteLine("Process finished!");
+
+        // Raise the event
+        ProcessCompleted?.Invoke("Process is done!");
+    }
+}
+```
+
+---
+
+### 3. **Subscribing to an Event**
+
+Other classes or code can **subscribe** (attach a method) to the event:
+
+```csharp
+class Program
+{
+    static void Main()
+    {
+        Process process = new Process();
+
+        // Subscribe to event
+        process.ProcessCompleted += ShowMessage;
+
+        // Run the process
+        process.StartProcess();
+    }
+
+    // Method that matches delegate signature
+    static void ShowMessage(string msg)
+    {
+        Console.WriteLine("Event received: " + msg);
+    }
+}
+```
+
+**Output:**
+
+```
+Process started...
+Process finished!
+Event received: Process is done!
+```
+
+---
+
+### 4. **Event Keywords & Rules**
+
+* `event` keyword → restricts direct access to delegate; only the class that declares it can raise it.
+* To raise an event safely → use `?.Invoke(...)` to avoid `NullReferenceException`.
+* Multiple subscribers can listen to the same event.
+
+---
+
+### 5. **Shortcut with EventHandler**
+
+C# provides built-in **EventHandler** delegate to avoid writing custom ones:
+
+```csharp
+public class Process
+{
+    public event EventHandler ProcessCompleted;
+
+    public void StartProcess()
+    {
+        Console.WriteLine("Process started...");
+        Console.WriteLine("Process finished!");
+        ProcessCompleted?.Invoke(this, EventArgs.Empty); // Raise event
     }
 }
 
@@ -1351,14 +1443,25 @@ class Program
 {
     static void Main()
     {
-        Publisher pub = new Publisher();
-        pub.OnMessage += (msg) => Console.WriteLine("Received: " + msg);
-
-        pub.SendMessage("Hello Event!");
+        Process process = new Process();
+        process.ProcessCompleted += (sender, e) =>
+        {
+            Console.WriteLine("Event received using EventHandler!");
+        };
+        process.StartProcess();
     }
 }
 ```
 
+---
+
+✅ In short:
+
+* **Delegate** defines "what kind of method" can respond.
+* **Event** is the "thing that happens".
+* **Subscribers** attach methods to respond when event is raised.
+
+---
 ---
 
 ### 🔹 3. Lambda Expressions
