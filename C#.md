@@ -1279,5 +1279,174 @@ Write a console app that:
 4. If the user enters something that’s not a number, handle it with `FormatException`.
 
 ---
+Great 🚀 Let’s start with **Module 9: Advanced Topics in C#**.
+This is where C# starts feeling **powerful** — you’ll see features that make your code concise, reusable, and modern.
+
+---
+
+# 📘 Module 9: Advanced Topics
+
+### 🔹 1. Delegates
+
+* A **delegate** is like a pointer to a method (a reference type that can store a method’s address).
+* Useful for callbacks, event handling, passing methods as parameters.
+
+Example:
+
+```csharp
+public delegate void PrintMessage(string msg);
+
+class Program
+{
+    static void Main()
+    {
+        PrintMessage printer = ShowMessage; // delegate assigned to method
+        printer("Hello from delegate!");
+    }
+
+    static void ShowMessage(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+```
+
+Output:
+
+```
+Hello from delegate!
+```
+
+---
+
+### 🔹 2. Events
+
+* **Events** are built on top of delegates.
+* They let one part of a program **notify** another when something happens.
+* Example: Button click in GUI.
+
+```csharp
+public class Publisher
+{
+    public event Action<string> OnMessage; // event using built-in delegate
+
+    public void SendMessage(string msg)
+    {
+        OnMessage?.Invoke(msg); // fire event if someone subscribed
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Publisher pub = new Publisher();
+        pub.OnMessage += (msg) => Console.WriteLine("Received: " + msg);
+
+        pub.SendMessage("Hello Event!");
+    }
+}
+```
+
+---
+
+### 🔹 3. Lambda Expressions
+
+* **Short-hand syntax** for delegates or anonymous methods.
+* Syntax: `(parameters) => expression`
+
+Example:
+
+```csharp
+Func<int, int, int> add = (a, b) => a + b;
+Console.WriteLine(add(5, 3)); // 8
+```
+
+---
+
+### 🔹 4. LINQ (Language Integrated Query)
+
+* Lets you **query collections** like SQL but in C#.
+* Works with arrays, lists, databases, XML, etc.
+
+Example:
+
+```csharp
+int[] numbers = { 1, 2, 3, 4, 5, 6 };
+
+var evens = numbers.Where(n => n % 2 == 0);
+
+foreach (var n in evens)
+    Console.WriteLine(n);
+```
+
+Output:
+
+```
+2
+4
+6
+```
+
+You can also use **query syntax**:
+
+```csharp
+var evens = from n in numbers
+            where n % 2 == 0
+            select n;
+```
+
+---
+
+### 🔹 5. Generics
+
+* Allow you to write **type-safe reusable code** without duplication.
+* Example: `List<T>` works for `int`, `string`, `Task`, etc.
+
+Custom generic class:
+
+```csharp
+public class Box<T>
+{
+    public T Value { get; set; }
+    public Box(T value) { Value = value; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Box<int> intBox = new Box<int>(123);
+        Box<string> strBox = new Box<string>("Hello");
+
+        Console.WriteLine(intBox.Value);
+        Console.WriteLine(strBox.Value);
+    }
+}
+```
+
+Output:
+
+```
+123
+Hello
+```
+
+---
+
+# 🔹 Summary
+
+In this module you learn:
+
+* ✅ Delegates → references to methods
+* ✅ Events → notify when something happens
+* ✅ Lambdas → shorthand functions
+* ✅ LINQ → query collections easily
+* ✅ Generics → reusable type-safe code
+
+---
+
+👉 Since these are a lot of new concepts, do you want me to **start with Delegates only today (with simple exercises)**, or do you prefer an **overview of all + small practice project** combining them?
+
 
 
