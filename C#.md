@@ -1294,19 +1294,29 @@ This is where C# starts feeling **powerful** — you’ll see features that make
 Example:
 
 ```csharp
-public delegate void PrintMessage(string msg);
-
-class Program
+using System;
+// Decleration.
+public delegate void AddDeligate(int a1, int b2);
+public delegate string SayDeligate(string name1);
+public class Program
 {
-    static void Main()
+    public static void Add(int a, int b)
     {
-        PrintMessage printer = ShowMessage; // delegate assigned to method
-        printer("Hello from delegate!");
+        Console.WriteLine($"{a} + {b} = {a+b}");
     }
-
-    static void ShowMessage(string message)
+    public string SayHello(string name)
     {
-        Console.WriteLine(message);
+        return "Hello " + name;
+    }
+    public static void Main(string[] args)
+    {
+        AddDeligate ad = new AddDeligate(Add);
+        ad(100, 50);
+        
+        Program p = new Program();
+        SayDeligate sd = new SayDeligate(p.SayHello);
+        string helloName = sd.Invoke("amar");
+        Console.WriteLine(helloName);
     }
 }
 ```
@@ -1314,7 +1324,8 @@ class Program
 Output:
 
 ```
-Hello from delegate!
+100 + 50 = 150
+Hello amar
 ```
 
 ---
