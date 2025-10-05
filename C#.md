@@ -1466,32 +1466,135 @@ class Program
 
 ### 🔹 3. Lambda Expressions
 
-* **Short-hand syntax** for delegates or anonymous methods.
-* Syntax: `(parameters) => expression`
+Excellent choice 🔥 — **Lambda Expressions** are one of the most powerful and elegant features in C#.
 
-Example:
+Let’s go step-by-step so you really *understand* them, not just memorize syntax 👇
+
+---
+
+## 🔹 1. What is a Lambda Expression?
+
+A **lambda expression** is basically a **short way to write a function** — especially when you want to pass a function as a value (for example, to an event, LINQ query, etc.).
+
+It’s like writing a small **anonymous method** (no name, defined inline).
+
+---
+
+## 🔹 2. Basic Syntax
 
 ```csharp
-Func<int, int, int> add = (a, b) => a + b;
-Console.WriteLine(add(5, 3)); // 8
+(parameters) => expression
+```
+
+or
+
+```csharp
+(parameters) => { statement1; statement2; ... }
+```
+
+## Example:
+
+```csharp
+x => x * x
+```
+
+This means “a function that takes one argument `x` and returns `x * x`”.
+
+It’s equivalent to:
+
+```csharp
+delegate (int x) { return x * x; }
 ```
 
 ---
 
-### 🔹 4. LINQ (Language Integrated Query)
+## 🔹 3. Lambda Example with a Delegate
 
-* Lets you **query collections** like SQL but in C#.
-* Works with arrays, lists, databases, XML, etc.
-
-Example:
+Let’s define a delegate first:
 
 ```csharp
-int[] numbers = { 1, 2, 3, 4, 5, 6 };
+delegate int SquareDelegate(int number);
+```
 
-var evens = numbers.Where(n => n % 2 == 0);
+Now use a lambda to create a function:
 
-foreach (var n in evens)
-    Console.WriteLine(n);
+```csharp
+SquareDelegate square = x => x * x;
+Console.WriteLine(square(5));  // Output: 25
+```
+
+🧠 Here:
+
+* `x` → parameter
+* `x * x` → returned value
+* `square(5)` → calls the lambda function
+
+---
+
+## 🔹 4. Lambda with Multiple Parameters
+
+```csharp
+Func<int, int, int> add = (a, b) => a + b;
+Console.WriteLine(add(10, 5)); // Output: 15
+```
+
+Explanation:
+
+* `Func<int, int, int>` means a function that takes two `int`s and returns an `int`.
+* `(a, b)` → parameters
+* `a + b` → body (return value)
+
+---
+
+## 🔹 5. Lambda with a Code Block
+
+If you need multiple statements, use `{}`:
+
+```csharp
+Func<int, int, int> multiply = (a, b) => 
+{
+    Console.WriteLine($"Multiplying {a} and {b}");
+    return a * b;
+};
+
+Console.WriteLine(multiply(3, 4)); // Output: 12
+```
+
+---
+
+## 🔹 6. Lambda in Events
+
+This is what you saw earlier 👇
+
+```csharp
+process.ProcessCompleted += (sender, e) =>
+{
+    Console.WriteLine("Event received using EventHandler!");
+};
+```
+
+Here, the **lambda** replaces a named method like this:
+
+```csharp
+void OnProcessCompleted(object sender, EventArgs e)
+{
+    Console.WriteLine("Event received using EventHandler!");
+}
+```
+
+So lambda = short inline version.
+
+---
+
+## 🔹 7. Lambda in LINQ (most common use)
+
+```csharp
+var numbers = new List<int> { 1, 2, 3, 4, 5 };
+
+var evenNumbers = numbers.Where(n => n % 2 == 0);
+
+foreach (var num in evenNumbers)
+    Console.WriteLine(num);
 ```
 
 Output:
@@ -1499,68 +1602,22 @@ Output:
 ```
 2
 4
-6
 ```
 
-You can also use **query syntax**:
-
-```csharp
-var evens = from n in numbers
-            where n % 2 == 0
-            select n;
-```
+Here `n => n % 2 == 0` is a **lambda predicate** — it returns `true` for even numbers.
 
 ---
 
-### 🔹 5. Generics
+## 🔹 8. Summary Table
 
-* Allow you to write **type-safe reusable code** without duplication.
-* Example: `List<T>` works for `int`, `string`, `Task`, etc.
-
-Custom generic class:
-
-```csharp
-public class Box<T>
-{
-    public T Value { get; set; }
-    public Box(T value) { Value = value; }
-}
-
-class Program
-{
-    static void Main()
-    {
-        Box<int> intBox = new Box<int>(123);
-        Box<string> strBox = new Box<string>("Hello");
-
-        Console.WriteLine(intBox.Value);
-        Console.WriteLine(strBox.Value);
-    }
-}
-```
-
-Output:
-
-```
-123
-Hello
-```
+| Expression Type   | Example                       | Description              |
+| ----------------- | ----------------------------- | ------------------------ |
+| Expression lambda | `x => x * x`                  | Returns a value directly |
+| Statement lambda  | `(x, y) => { return x + y; }` | Has multiple statements  |
+| Event handler     | `(sender, e) => { ... }`      | Inline event handler     |
+| Predicate (LINQ)  | `n => n > 10`                 | Used for filtering       |
 
 ---
 
-# 🔹 Summary
-
-In this module you learn:
-
-* ✅ Delegates → references to methods
-* ✅ Events → notify when something happens
-* ✅ Lambdas → shorthand functions
-* ✅ LINQ → query collections easily
-* ✅ Generics → reusable type-safe code
-
----
-
-👉 Since these are a lot of new concepts, do you want me to **start with Delegates only today (with simple exercises)**, or do you prefer an **overview of all + small practice project** combining them?
-
-
-
+Would you like me to show **how lambdas are actually compiled** (how C# converts them into delegate objects behind the scenes)?
+That’s a cool next step to understand how they *work internally*.
