@@ -1618,6 +1618,96 @@ Here `n => n % 2 == 0` is a **lambda predicate** — it returns `true` for even 
 | Predicate (LINQ)  | `n => n > 10`                 | Used for filtering       |
 
 ---
+## 🧩 What Are Generics in C#?
 
-Would you like me to show **how lambdas are actually compiled** (how C# converts them into delegate objects behind the scenes)?
-That’s a cool next step to understand how they *work internally*.
+Generics allow you to **create classes, methods, interfaces, or delegates** with a **placeholder for data types** — so you can write **type-safe** and **reusable** code.
+
+### 💡 Example Without Generics
+
+```csharp
+public class Box
+{
+    private object content;
+
+    public void Add(object item)
+    {
+        content = item;
+    }
+
+    public object Get()
+    {
+        return content;
+    }
+}
+```
+
+Usage:
+
+```csharp
+Box box = new Box();
+box.Add(123);      // int
+int value = (int)box.Get(); // Need to cast — risky!
+```
+
+> ❌ Problem: You must cast manually, and you can easily get a runtime error.
+
+---
+
+### ✅ Example With Generics
+
+```csharp
+public class Box<T>
+{
+    private T content;
+
+    public void Add(T item)
+    {
+        content = item;
+    }
+
+    public T Get()
+    {
+        return content;
+    }
+}
+```
+
+Usage:
+
+```csharp
+Box<int> intBox = new Box<int>();
+intBox.Add(123);
+int number = intBox.Get(); // No casting needed, fully type-safe
+```
+
+---
+
+## 🧠 Why Use Generics?
+
+1. **Type Safety** – Errors are caught at compile-time, not runtime.
+2. **Reusability** – One class works for multiple data types.
+3. **Performance** – Avoids boxing/unboxing for value types.
+
+---
+
+## 🔹 Common Generic Types in .NET
+
+| Class                      | Description                     |
+| -------------------------- | ------------------------------- |
+| `List<T>`                  | A strongly typed list.          |
+| `Dictionary<TKey, TValue>` | Key-value pair collection.      |
+| `Queue<T>`                 | First In, First Out collection. |
+| `Stack<T>`                 | Last In, First Out collection.  |
+
+Example:
+
+```csharp
+List<string> names = new List<string>();
+names.Add("Sam");
+names.Add("Priya");
+foreach (string name in names)
+{
+    Console.WriteLine(name);
+}
+```
+
