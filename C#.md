@@ -1710,4 +1710,4 @@ foreach (string name in names)
     Console.WriteLine(name);
 }
 ```
-
+Would you like me to go next into generic methods, constraints, or generic collections (like List, Dictionary, etc.)?
