@@ -2,7 +2,7 @@
 
 *   Platform compatibility and prerequisites
 *   Installing Jenkins on various platforms (Windows, Linux)
-[Video Tutorial](https://youtu.be/7WV8gYRCIsY?si=IvnPtSlESIkEM6r4)
+
 ---
 
 # ✅ **1. Prerequisites for Installing Jenkins**
@@ -28,7 +28,7 @@ java -version
 
 ---
 
-# 🖥️ **2. Installing Jenkins on Windows**
+# 🖥️ **2. Installing Jenkins on Windows** [YouTube](https://youtu.be/7WV8gYRCIsY?si=IvnPtSlESIkEM6r4)
 
 ### **Step 1 — Install Java**
 
@@ -66,7 +66,7 @@ Setup your first admin user → Jenkins is ready.
 
 ---
 
-# 🐧 **3. Installing Jenkins on Linux (Ubuntu / Debian)**
+# 🐧 **3. Installing Jenkins on Linux (Ubuntu / Debian)** [YouTube](https://youtu.be/bhz8XZTnulw?si=z6eJbgP8dP4Oo8E1)
 
 ### **Step 1 — Install Java**
 
