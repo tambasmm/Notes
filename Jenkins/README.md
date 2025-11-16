@@ -10,17 +10,17 @@ Great initiative, Sammitra! Here's a structured **Jenkins learning syllabus with
 *   History and background
 *   Why Jenkins? Use cases and benefits
 
-#### **Week 2: Infrastructure Overview**
+#### **Week 2: Installation**
+
+*   Installing Jenkins on various platforms (Windows, Linux, macOS)
+*   Platform compatibility and prerequisites
+
+#### **Week 3: Infrastructure Overview**
 
 *   Types of infrastructure Jenkins supports
 *   Master-Agent architecture
 *   Distributed builds
 *   Tool management in Jenkins
-
-#### **Week 3: Installation**
-
-*   Installing Jenkins on various platforms (Windows, Linux, macOS)
-*   Platform compatibility and prerequisites
 
 #### **Week 4: Configuration**
 
