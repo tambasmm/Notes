@@ -12,8 +12,8 @@ Great initiative, Sammitra! Here's a structured **Jenkins learning syllabus with
 
 #### **Week 2: Installation**
 
-*   Installing Jenkins on various platforms (Windows, Linux, macOS)
 *   Platform compatibility and prerequisites
+*   Installing Jenkins on various platforms (Windows, Linux, macOS)
 
 #### **Week 3: Infrastructure Overview**
 
