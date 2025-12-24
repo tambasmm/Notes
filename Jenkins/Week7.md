@@ -1,4 +1,3 @@
-Great question, Sammitra! Since you’re working through Jenkins concepts, here’s a **concise, practical guide to Declarative Pipeline syntax**—what blocks exist, how to structure them, and how to control build results *the Declarative way*.
 
 ***
 
@@ -305,5 +304,3 @@ when { anyOf { branch 'main'; branch 'release/*' } }
 ```
 
 ***
-
-## Want me to tailor a **starter Declarative Jenkinsfile** for your EMOB R\&D projects (e.g., with Maven, Node, Docker, or C#/.NET), and include stages for build, quality, tests, and deploy? If you share your tech stack and artifact types, I’ll generate a ready-to-use pipeline with best practices.
