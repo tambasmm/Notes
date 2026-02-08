@@ -295,11 +295,3 @@ Use when:
 ✔ Library + app build
 
 ---
-
-If you want next, I suggest (very practical next step):
-
-👉 **Multi-folder C Project Makefile (Real Industry Style)** ⭐
-👉 **Auto Dependency Generation (.d files)**
-👉 **Debug vs Release Makefile Setup**
-
-Which one next? 😄

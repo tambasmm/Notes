@@ -93,21 +93,7 @@ Why:
 
 ## 📌 Phase 3 — Include another Makefile
 
-### Learn:
 
-* Compile `.c → .o`
-* Link `.o → executable`
-* Clean build files
-
-Example idea:
-
-```
-CC=gcc
-CFLAGS=-Wall
-
-app: main.o add.o
-    $(CC) main.o add.o -o app
-```
 
 ---
 
