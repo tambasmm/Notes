@@ -91,7 +91,7 @@ Why:
 
 ---
 
-## 📌 Phase 3 — Build a Simple C Project Makefile
+## 📌 Phase 3 — Include another Makefile
 
 ### Learn:
 
@@ -171,40 +171,6 @@ $^ all dependencies
   * CMake
   * Ninja
   * CI/CD pipelines
-
----
-
-# 📅 Suggested Learning Timeline
-
-## Week 1
-
-✔ What is Makefile
-✔ Basic syntax
-✔ Simple project build
-
----
-
-## Week 2
-
-✔ Pattern rules
-✔ Variables
-✔ Multi-file C project
-
----
-
-## Week 3
-
-✔ Dependency generation
-✔ Debug Makefiles
-✔ Multi-folder structure
-
----
-
-## Week 4
-
-✔ Library builds
-✔ Optimization flags
-✔ Real project Makefile
 
 ---
 
